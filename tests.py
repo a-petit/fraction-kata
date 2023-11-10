@@ -1,20 +1,6 @@
-from math import gcd
-
 import pytest
 
-
-class Fraction:
-    def __init__(self, numerator, denominator):
-        self._numerator = numerator
-        self._denominator = denominator
-
-    @classmethod
-    def of(cls, numerator, denominator) -> 'Fraction':
-        d = gcd(numerator, denominator)
-        return Fraction(numerator // d, denominator // d)
-
-    def representation(self) -> str:
-        return f"{self._numerator}/{self._denominator}"
+from fraction import Fraction, DenominatorIsZeroException
 
 
 @pytest.mark.parametrize("n, d, representation", [
@@ -25,3 +11,8 @@ class Fraction:
 ])
 def test_represent_fraction(n, d, representation):
     assert Fraction.of(n, d).representation() == representation
+
+
+def test_create_fraction_with_denominator_zero_raise_exception():
+    with pytest.raises(DenominatorIsZeroException):
+        Fraction.of(1, 0)
