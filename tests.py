@@ -1,3 +1,5 @@
+from math import gcd
+
 import pytest
 
 
@@ -8,7 +10,8 @@ class Fraction:
 
     @classmethod
     def of(cls, numerator, denominator) -> 'Fraction':
-        return Fraction(numerator, denominator)
+        d = gcd(numerator, denominator)
+        return Fraction(numerator // d, denominator // d)
 
     def representation(self) -> str:
         return f"{self._numerator}/{self._denominator}"
@@ -18,6 +21,7 @@ class Fraction:
     (1, 2, "1/2"),
     (1, 3, "1/3"),
     (3, 2, "3/2"),
+    (2, 4, "1/2")
 ])
 def test_represent_fraction(n, d, representation):
     assert Fraction.of(n, d).representation() == representation
