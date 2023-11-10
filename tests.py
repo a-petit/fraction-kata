@@ -16,3 +16,30 @@ def test_represent_fraction(n, d, representation):
 def test_create_fraction_with_denominator_zero_raise_exception():
     with pytest.raises(DenominatorIsZeroException):
         Fraction.of(1, 0)
+
+
+def test_multiply_fraction_with_same_numerator_1():
+    f1 = Fraction.of(1, 3)
+    f2 = Fraction.of(1, 5)
+
+    product = f1 * f2
+
+    assert product.representation() == "1/15"
+
+
+def test_multiply_fraction_with_same_numerator_2():
+    f1 = Fraction.of(1, 3)
+    f2 = Fraction.of(1, 7)
+
+    product = f1 * f2
+
+    assert product.representation() == "1/21"
+
+
+def test_multiply_fraction_with_different_numerator():
+    f1 = Fraction.of(3, 2)
+    f2 = Fraction.of(5, 7)
+
+    product = f1 * f2
+
+    assert product.representation() == "15/14"

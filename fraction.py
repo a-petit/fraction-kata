@@ -14,6 +14,10 @@ class Fraction:
         d = gcd(numerator, denominator)
         return Fraction(numerator // d, denominator // d)
 
+    def __mul__(self, other) -> 'Fraction':
+        if isinstance(other, Fraction):
+            return Fraction.of(self._numerator * other._numerator, self._denominator * other._denominator)
+
     def representation(self) -> str:
         return f"{self._numerator}/{self._denominator}"
 
