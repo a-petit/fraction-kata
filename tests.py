@@ -1,4 +1,5 @@
 import pytest
+from hypothesis import given, strategies
 
 from fraction import Fraction, DenominatorIsZeroException
 
@@ -43,3 +44,18 @@ def test_multiply_fraction_with_different_numerator():
     product = f1 * f2
 
     assert product.representation() == "15/14"
+
+
+@given(
+    strategies.integers(),
+    strategies.integers(min_value=1),
+    strategies.integers(),
+    strategies.integers(min_value=1))
+def test_multiply_fractions(n1, d1, n2, d2):
+    f1 = Fraction.of(n1, d1)
+    f2 = Fraction.of(n2, d2)
+
+    product = f1 * f2
+
+    assert product.representation() == Fraction.of(n1 * n2, d1 * d2).representation()
+
