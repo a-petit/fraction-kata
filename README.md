@@ -2,6 +2,8 @@
 
 Implémentation du kata Fraction en Python dans un contexte de cuisine.
 
+L'implémentation live est disponible ici : https://youtu.be/z7Xj54VZbvc
+
 On souhaite gérer des fractions pour afficher des recettes : 
 ![Contexte.png](Contexte.png)
 
